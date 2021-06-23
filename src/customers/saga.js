@@ -11,19 +11,21 @@ import {
 import Client from '../Client/client';
 
 const token = localStorage.getItem('token') || '';
-export function* getBundles(actions) {
+export function* getCustomers(actions) {
   try {
     const makeCustomersRequest = new GetCustomersBuilder()
-      .params({ ...actions.payload, sort: 'created,desc' })
+      .params({ ...actions.payload })
       .build();
 
     const client = new Client(token);
     const response = yield client.execute(makeCustomersRequest);
 
+    console.log("response", response.data.data);
+
     yield put({
       type: GET_CUSTOMERS_SUCCESS,
-      data: response.data,
-      count: response.data.total,
+      data: response.data.data.finalResult,
+      count: response.data.data.count,
     });
   } catch (error) {
     yield put({
@@ -34,6 +36,6 @@ export function* getBundles(actions) {
   }
 }
 
-export default function* bundleSaga() {
-  yield takeLatest(GET_CUSTOMERS, getBundles);
+export default function* customerSaga() {
+  yield takeLatest(GET_CUSTOMERS, getCustomers);
 }

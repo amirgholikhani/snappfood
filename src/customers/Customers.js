@@ -8,13 +8,18 @@ import {getCustomersAction} from "./actions";
 const Customers = (props) => {
 
   useEffect(() => {
-    props.getCustomersDispatch({});
+    props.getCustomersDispatch({
+      lat:35.774,
+      long: 51.418,
+      page: 0,
+      page_size: 10
+    });
   }, []);
 
   return (
     <div>
       {props.customersList.map(customer => {
-        return <div>{customer.name}</div>
+        return <div>{customer.data?.title}</div>
       })}
     </div>
   )
