@@ -20,7 +20,7 @@ const Customers = (props) => {
   )
 }
 
-const mapStateToProps = createStructuredSelector({},{
+const mapStateToProps = createStructuredSelector({
   customersList: makeSelectCustomersList(),
   count: makeSelectCountList(),
   loading: makeSelectLoading(),

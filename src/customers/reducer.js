@@ -29,5 +29,7 @@ export const CustomersReducer = (state = initialState, action) => {
     default:
       break;
   }
+
+  return state;
 }
 export default CustomersReducer;
