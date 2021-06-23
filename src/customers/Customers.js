@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {makeSelectCountList, makeSelectCustomersList, makeSelectError, makeSelectLoading} from "./selectors";
 import {getCustomersAction} from "./actions";
+import Item from "./Item";
 
 const Customers = (props) => {
 
@@ -18,8 +19,8 @@ const Customers = (props) => {
 
   return (
     <div>
-      {props.customersList.map(customer => {
-        return <div>{customer.data?.title}</div>
+      {props.customersList.map((customer, index) => {
+        return <Item key={index} properties={customer.data} />
       })}
     </div>
   )
