@@ -1,13 +1,13 @@
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const select = (state) => initialState;
+const select = (state) => state.customer ||  initialState;
 
 const makeSelectCustomersList = () =>
   createSelector(select, substate => substate.customersList);
 
 const makeSelectCustomer = () =>
-  createSelector(select, substate => substate.customer);
+  createSelector(select, substate => substate.customerDetail);
 
 const makeSelectCountList = () =>
   createSelector(select, substate => substate.count);

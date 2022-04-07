@@ -19,8 +19,10 @@ const Customers = (props) => {
 
   return (
     <div>
-      {props.customersList.map((customer, index) => {
-        return <Item key={index} properties={customer.data} />
+      <h1> Customers :</h1>
+      {props.loading && <div>... Loading</div>}
+      {props.customersList && props.customersList?.map((customer, index) => {
+        return <Item key={index} data={customer.data} />
       })}
     </div>
   )

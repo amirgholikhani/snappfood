@@ -11,6 +11,7 @@ import {
 import Client from '../Client/client';
 
 const token = localStorage.getItem('token') || '';
+
 export function* getCustomers(actions) {
   try {
     const makeCustomersRequest = new GetCustomersBuilder()
@@ -19,8 +20,6 @@ export function* getCustomers(actions) {
 
     const client = new Client(token);
     const response = yield client.execute(makeCustomersRequest);
-
-    console.log("response", response.data.data);
 
     yield put({
       type: GET_CUSTOMERS_SUCCESS,
