@@ -9,21 +9,30 @@ import Item from "./Item";
 const Customers = (props) => {
 
   useEffect(() => {
+    fetchCustomers();
+  }, []);
+
+  const fetchCustomers = () => {
     props.getCustomersDispatch({
       lat:35.774,
       long: 51.418,
       page: 0,
       page_size: 10
     });
-  }, []);
+  }
 
   return (
     <div>
       <h1> Customers :</h1>
       {props.loading && <div>... Loading</div>}
-      {props.customersList && props.customersList?.map((customer, index) => {
-        return <Item key={index} data={customer.data} />
-      })}
+      <div>
+        {!props.loading && props.customersList && props.customersList?.map((customer, index) => {
+          return <Item key={index} data={customer.data} />
+        })}
+      </div>
+      <div>
+        <button onClick={fetchCustomers}>Fetch Customers</button>
+      </div>
     </div>
   )
 }
