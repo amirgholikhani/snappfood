@@ -1,12 +1,13 @@
-import React, {useEffect} from "react";
+import {useEffect} from "react";
 import {createStructuredSelector} from "reselect";
 import {connect} from 'react-redux';
 import {compose} from 'redux';
 import {makeSelectCountList, makeSelectCustomersList, makeSelectError, makeSelectLoading} from "./selectors";
 import {getCustomersAction} from "./actions";
 import Item from "./Item";
+import {Props} from "./interface";
 
-const Customers = (props) => {
+const Customers = (props: Props) => {
 
   useEffect(() => {
     fetchCustomers();
@@ -44,9 +45,9 @@ const mapStateToProps = createStructuredSelector({
   error: makeSelectError(),
 });
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: any) {
   return {
-    getCustomersDispatch: (payload) => dispatch(getCustomersAction(payload)),
+    getCustomersDispatch: (payload: object) => dispatch(getCustomersAction(payload)),
   };
 }
 
