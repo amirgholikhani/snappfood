@@ -6,15 +6,19 @@ import {makeSelectCountList, makeSelectCustomersList, makeSelectError, makeSelec
 import {getCustomersAction} from "./actions";
 import Item from "./Item";
 import {Props} from "./interface";
-import {getValueWithType} from "../utils/helper";
+import {getQueue, getValueWithType} from "../utils/helper";
 
 const Customers = (props: Props) => {
 
   useEffect(() => {
     fetchCustomers();
+  }, []);
+
+  useEffect(() => {
     getValueWithType(225);
     getValueWithType('Hello World');
-  }, []);
+    getQueue();
+  }, [])
 
   const fetchCustomers = () => {
     props.getCustomersDispatch({
