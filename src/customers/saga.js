@@ -1,5 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects';
 import {
+  GET_CUSTOMERS,
   GET_CUSTOMERS_FAILED,
   GET_CUSTOMERS_SUCCESS,
 } from './constants';
@@ -8,12 +9,11 @@ import {
   GetCustomersBuilder,
 } from '../Client/customers/customers';
 import Client from '../Client/client';
-import {getCustomersAction} from "./actions";
-import {Payload} from "./interface";
+// import {Payload} from "./interface";
 
 const token = localStorage.getItem('token') || '';
 
-export function* getCustomers(actions: Payload): any {
+export function* getCustomers(actions) {
   try {
     const makeCustomersRequest = new GetCustomersBuilder()
       .params({ ...actions.payload })
@@ -27,7 +27,7 @@ export function* getCustomers(actions: Payload): any {
       data: response.data.data.finalResult,
       count: response.data.data.count,
     });
-  } catch (error: any) {
+  } catch (error) {
     yield put({
       type: GET_CUSTOMERS_FAILED,
       error: error.message,
@@ -37,5 +37,5 @@ export function* getCustomers(actions: Payload): any {
 }
 
 export default function* customerSaga() {
-  yield takeLatest(getCustomersAction, getCustomers);
+  yield takeLatest(GET_CUSTOMERS, getCustomers);
 }
