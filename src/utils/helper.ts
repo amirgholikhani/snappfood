@@ -25,6 +25,19 @@ export function getQueue() {
     console.log(queueString);
 
     getSample();
+    console.log(num(2)(3)(4));
+
+    const numX = num(3);
+    console.log(numX(4)(5));
+    console.log(numX(2)(2));
+}
+
+export function num(x: number) {
+    return function (y: number) {
+        return function (z: number) {
+            return x * y * z;
+        }
+    }
 }
 
 
