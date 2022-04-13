@@ -2,6 +2,7 @@ import {Queue} from "./Queue";
 import * as foo from './sample';
 import { age as AgeSample } from './sample'
 import my_sample_function from './sample';
+import './examples';
 
 export function getValueWithType<T>(arg: T): T {
     const value = `${arg}  ${typeof arg}`;
